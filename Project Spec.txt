@@ -1,0 +1,72 @@
+Project Spec
+
+App.jsx                 ? owns cartItems state + handlers
++-- Menu.jsx            ? receives MENU list + onAddItem callback
++-- OrderSummary.jsx    ? receives cartItems + onRemoveItem callback
+
+
+State shape
+cartItems lives in App.jsx as an array of objects. Each object represents one unique fruit in the cart:
+js[
+  { id: 1, name: "Apple",  price: 1.50, qty: 2 },
+  { id: 3, name: "Mango",  price: 2.00, qty: 1 },
+]
+When the user clicks Add on a fruit that's already in the cart, qty increments. If it's not in the cart yet, a new object is pushed with qty: 1.
+
+Static data (not state)
+The menu itself never changes, so it's a plain array defined outside any component — no useState needed for it:
+jsconst MENU = [
+  { id: 1, name: "Apple",      price: 1.50 },
+  { id: 2, name: "Banana",     price: 0.75 },
+  { id: 3, name: "Mango",      price: 2.00 },
+  { id: 4, name: "Strawberry", price: 3.00 },
+  { id: 5, name: "Watermelon", price: 4.50 },
+]
+
+Files
+src/
++-- App.jsx
++-- App.css
++-- components/
+¦   +-- Menu.jsx
+¦   +-- Menu.css
+¦   +-- OrderSummary.jsx
+¦   +-- OrderSummary.css
++-- data/
+    +-- menuData.js      ? MENU array lives here, imported where needed
+
+What each piece does
+FileResponsibilitymenuData.jsSingle source of truth for fruit names, IDs, pricesApp.jsxOwns cartItems state, defines handleAddItem and handleRemoveItem, passes them down as propsMenu.jsxRenders a button for each fruit; calls onAddItem when clickedOrderSummary.jsxRenders the cart rows, calculates and shows the running total
+
+Props flow (the whole learning point)
+App.jsx
+  cartItems state  --------------------------? OrderSummary.jsx
+  handleAddItem()  --? Menu.jsx (as onAddItem prop)
+  handleRemoveItem() -------------------------? OrderSummary.jsx (as onRemoveItem prop)
+Menu.jsx never sees the cart. OrderSummary.jsx never sees the menu. App.jsx is the bridge. That separation is exactly what makes this a clean teaching example.
+
+Features (v1 only)
+
+Add fruit ? appears in order summary with qty 1; clicking again increments qty
+Remove button per row ? decrements qty; if qty hits 0 the row is removed
+Running total auto-calculates from cartItems
+No checkout, no backend, no localStorage yet — those are v2 ideas
+
+
+const MENU = [
+  { id: 1, name: "Carambola",    price: 2.00, image: "/assets/carambola.jpg" },
+  { id: 2, name: "Coconut",      price: 3.50, image: "/assets/coconut.jpg" },
+  { id: 3, name: "Durian",       price: 5.00, image: "/assets/durian.jpg" },
+  { id: 4, name: "Guava",        price: 1.50, image: "/assets/guava.jpg" },
+  { id: 5, name: "Lychee",       price: 2.50, image: "/assets/lychee.jpg" },
+  { id: 6, name: "Jabuticaba",   price: 3.00, image: "/assets/jabuticaba.jpg" },
+  { id: 7, name: "Mango",        price: 2.00, image: "/assets/mango.jpg" },
+  { id: 8, name: "Papaya",       price: 1.75, image: "/assets/papaya.jpg" },
+  { id: 9, name: "Passionfruit", price: 2.25, image: "/assets/passionfruit.jpg" },
+]
+
++-------------+
+¦   [image]   ¦
+¦    Mango    ¦
+¦   $ 2.00    ¦
++-------------+
