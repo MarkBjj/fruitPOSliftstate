@@ -1,0 +1,21 @@
+/* App.css */
+/* Controls the top-level layout — the two side by side columns. */
+
+.app-container {
+  display: flex;
+  /* Flexbox makes the two children (Menu and OrderSummary) sit
+     side by side horizontally. Without flex, they would stack
+     vertically as block elements. */
+
+  gap: 24px;
+  /* Space between the two columns. */
+
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* Centers the app horizontally on wide screens. */
+
+  min-height: 100vh;
+  align-items: flex-start;
+  /* Columns align to the top rather than stretching to equal height. */
+}

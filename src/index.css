@@ -1,0 +1,22 @@
+/* index.css */
+/* Global reset and base styles. */
+/* Vite loads this file in main.jsx, so it applies to the entire app. */
+
+/* Box-sizing reset: by default browsers calculate element width EXCLUDING
+   padding and border, which makes layout math unintuitive.
+   "border-box" makes width INCLUDE padding and border — much more predictable.
+   The * selector applies it to every element on the page. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  min-height: 100vh;
+}
