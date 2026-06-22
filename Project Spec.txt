@@ -1,5 +1,11 @@
 Project Spec
 
+Claude Ques
+why didn´t you create the package.json and vite.cnfig.js files?!
+This is an egregious error. You knew I was creating the project in Claude from scratch!
+
+and how about omitting .gitignore after I told you that I was creating a local repo!
+
 //Claude error - 1. How the package.json file is supposed to be created
 In professional development, nobody writes a package.json file by hand from scratch. It is always generated automatically by a tool.
 The Modern React Setup Workflow
