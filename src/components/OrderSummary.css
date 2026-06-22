@@ -1,0 +1,111 @@
+/* OrderSummary.css */
+/* Styles the cart panel on the right column. */
+
+.order-container {
+  flex: 1;
+  /* Takes 1 share of space vs Menu's 2 shares — right column is narrower. */
+
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 24px;
+  /* Sticky positioning keeps the order panel visible as the user scrolls
+     the page. It stays fixed relative to the viewport once it hits 24px
+     from the top. Only works because align-items: flex-start is set
+     on the parent — stretch would prevent sticky from working. */
+}
+
+.order-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.order-empty {
+  font-size: 0.9rem;
+  color: #aaa;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.order-list {
+  list-style: none;
+  /* Removes the default bullet points from <ul>. */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.order-item-image {
+  width: 36px;
+  height: 36px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+  /* Prevents the image from shrinking when the row runs out of space. */
+}
+
+.order-item-name {
+  flex: 1;
+  /* Takes all remaining horizontal space, pushing qty and price to the right. */
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.order-item-qty {
+  font-size: 0.85rem;
+  color: #888;
+  min-width: 28px;
+  text-align: center;
+}
+
+.order-item-price {
+  font-size: 0.9rem;
+  font-weight: 600;
+  min-width: 52px;
+  text-align: right;
+}
+
+.order-item-remove {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 1rem;
+  line-height: 1;
+  color: #e57373;
+  /* Soft red — visually signals "remove" without being aggressive. */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease;
+}
+
+.order-item-remove:hover {
+  background-color: #fdecea;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  /* Pushes "Total" label to the left and the amount to the right. */
+
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 2px solid #eee;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+}
