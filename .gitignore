@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build output
+dist/
+
+# Local env files (where you hide API keys)
+.env
+.env.local
+
+# IDE/System files
+.DS_Store
+.vscode/
