@@ -1,10 +1,14 @@
 Project Spec
 
-Claude Ques
-why didn´t you create the package.json and vite.cnfig.js files?!
-This is an egregious error. You knew I was creating the project in Claude from scratch!
+// project review
+1) Menu.jsx - loop through using Map and creating buttons from each fruit object in the MENU array
+2) Button onClick={() => onAddItem(fruit)}
+// When the card is clicked, we call onAddItem function > in App.jsx and pass the full fruit object: { id, name, price, image }.
+3) 
 
-and how about omitting .gitignore after I told you that I was creating a local repo!
+
+
+
 
 //Claude error - 1. How the package.json file is supposed to be created
 In professional development, nobody writes a package.json file by hand from scratch. It is always generated automatically by a tool.

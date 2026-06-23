@@ -5,6 +5,7 @@
 //   - the MENU array (the list of fruits to display)
 //   - onAddItem (the handler to call when a fruit card is clicked)
 
+// Static menu data — list of available fruits, never changes
 import { MENU } from "../data/menuData";
 // We import MENU directly into Menu.jsx rather than receiving it as a prop.
 // This is fine because MENU is static data that never changes — it is not
@@ -38,8 +39,7 @@ const Menu = ({ onAddItem }) => {
 
             className="fruit-card"
             onClick={() => onAddItem(fruit)}
-            // When the card is clicked, we call onAddItem and pass the full
-            // fruit object: { id, name, price, image }.
+            // When the card is clicked, we call onAddItem function > in App.jsx and pass the full fruit object: { id, name, price, image }.
             // App.jsx receives this object in handleAddItem(fruit) and uses it
             // to update the cart state.
             //

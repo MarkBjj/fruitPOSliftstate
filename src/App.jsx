@@ -12,12 +12,10 @@
 import { useState } from "react";
 // useState is the React hook that lets a component own reactive data.
 // When state changes, React automatically re-renders the component
-// (and its children) with the new values.
 
 import Menu from "./components/Menu";
 import OrderSummary from "./components/OrderSummary";
 // We import both child components so App can render them in its JSX.
-// App is the parent — it renders the layout and passes props down.
 
 import "./App.css";
 // App-level styles: the two-column layout lives here.
@@ -29,6 +27,7 @@ const App = () => {
   // "cartItems" is the current value. "setCartItems" is the ONLY way
   // to update it — we never mutate cartItems directly (e.g. no .push()).
   // Mutating state directly would not trigger a re-render.
+  // DECLARING CART ARRAYThat [] at the end — inside useState() — is the initial value. You're telling React: "when this component first loads, cartItems starts as an empty array."
   const [cartItems, setCartItems] = useState([]);
 
   // --- HANDLER: Add item ---
@@ -38,9 +37,6 @@ const App = () => {
   const handleAddItem = (fruit) => {
     // We use the functional updater form of setCartItems: (prevItems) => ...
     // React guarantees that "prevItems" is always the latest state value.
-    // This is safer than using "cartItems" directly inside the updater,
-    // because multiple state updates can be batched by React and using
-    // the variable directly could read a stale value.
     setCartItems((prevItems) => {
       // Check if this fruit is already in the cart by looking for
       // an object whose id matches the clicked fruit's id.
@@ -93,6 +89,16 @@ const App = () => {
     });
   };
 
+  // CHECKOUT uplifted from OrderSummary.jsx
+  const handleCheckout = () => {
+    // Convert the cart array to a JSON string for display
+    const json = JSON.stringify(cartItems, null, 2);
+    // Clear the cart
+    setCartItems([]);
+    // Show the order as a JSON popup
+    alert(json);
+  };
+
   // --- RENDER ---
   return (
     <div className="app-container">
@@ -114,6 +120,7 @@ const App = () => {
         onRemoveItem={handleRemoveItem}
         // We pass the remove handler so OrderSummary can trigger it
         // when the user clicks a remove button on a cart row.
+        onCheckout={handleCheckout}
       />
     </div>
   );

@@ -7,7 +7,7 @@
 
 import "./OrderSummary.css";
 
-const OrderSummary = ({ cartItems, onRemoveItem }) => {
+const OrderSummary = ({ cartItems, onRemoveItem, onCheckout }) => {
   // --- DERIVED VALUE: Total price ---
   // We do NOT store the total in useState. It is not independent data —
   // it is always calculated FROM cartItems. Any time cartItems changes,
@@ -33,7 +33,6 @@ const OrderSummary = ({ cartItems, onRemoveItem }) => {
   return (
     <div className="order-container">
       <h2 className="order-title">Current Order</h2>
-
       {/* Conditional rendering: show a message when the cart is empty,
           show the list when it has items.
           The && operator works like: if (left side is truthy) → render right side.
@@ -42,7 +41,8 @@ const OrderSummary = ({ cartItems, onRemoveItem }) => {
       {cartItems.length === 0 && (
         <p className="order-empty">No items yet. Tap a fruit to add it.</p>
       )}
-
+      {/* // So && became the React convention for "show this only when condition is
+      true." */}
       {cartItems.length > 0 && (
         <ul className="order-list">
           {/* Again we use .map() to transform the cartItems array into JSX rows.
@@ -90,7 +90,6 @@ const OrderSummary = ({ cartItems, onRemoveItem }) => {
           ))}
         </ul>
       )}
-
       {/* Order total — only shown when there is something in the cart */}
       {cartItems.length > 0 && (
         <div className="order-total">
@@ -99,6 +98,12 @@ const OrderSummary = ({ cartItems, onRemoveItem }) => {
           {/* total was calculated by reduce() above — we just display it here.
               .toFixed(2) formats it to 2 decimal places as a display string. */}
         </div>
+      )}
+      {/* // CHECKOUT BUTTON */}
+      {cartItems.length > 0 && (
+        <button className="checkout-button" onClick={() => onCheckout()}>
+          Checkout
+        </button>
       )}
     </div>
   );
