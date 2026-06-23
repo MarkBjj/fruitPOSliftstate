@@ -29,6 +29,7 @@ const App = () => {
   // Mutating state directly would not trigger a re-render.
   // DECLARING CART ARRAYThat [] at the end — inside useState() — is the initial value. You're telling React: "when this component first loads, cartItems starts as an empty array."
   const [cartItems, setCartItems] = useState([]);
+  const [orderPlaced, setOrderPlaced] = useState(false);
 
   // --- HANDLER: Add item ---
   // This function is passed DOWN to Menu.jsx as a prop.
@@ -91,12 +92,16 @@ const App = () => {
 
   // CHECKOUT uplifted from OrderSummary.jsx
   const handleCheckout = () => {
-    // Convert the cart array to a JSON string for display
+    // Convert cartItems array to a JSON string.
+    // In a live POS system this would be POST'd to a server endpoint
+    // to log the transaction to a database before clearing the cart.
     const json = JSON.stringify(cartItems, null, 2);
-    // Clear the cart
-    setCartItems([]);
-    // Show the order as a JSON popup
     alert(json);
+    setOrderPlaced(true);
+    setCartItems([]);
+    setTimeout(() => {
+      setOrderPlaced(false);
+    }, 3000);
   };
 
   // --- RENDER ---
@@ -121,6 +126,9 @@ const App = () => {
         // We pass the remove handler so OrderSummary can trigger it
         // when the user clicks a remove button on a cart row.
         onCheckout={handleCheckout}
+        //handle once Checkout button clicked
+        orderPlaced={orderPlaced}
+        //pass orderPlaced state to OrderSummary.jsx
       />
     </div>
   );

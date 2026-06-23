@@ -7,7 +7,7 @@
 
 import "./OrderSummary.css";
 
-const OrderSummary = ({ cartItems, onRemoveItem, onCheckout }) => {
+const OrderSummary = ({ cartItems, onRemoveItem, onCheckout, orderPlaced }) => {
   // --- DERIVED VALUE: Total price ---
   // We do NOT store the total in useState. It is not independent data —
   // it is always calculated FROM cartItems. Any time cartItems changes,
@@ -38,6 +38,7 @@ const OrderSummary = ({ cartItems, onRemoveItem, onCheckout }) => {
           The && operator works like: if (left side is truthy) → render right side.
           cartItems.length === 0 is true when the array is empty, so we render
           the empty message. When items exist, the second condition renders the list. */}
+      {orderPlaced && <p className="order-placed-message">✓ Order placed!</p>}
       {cartItems.length === 0 && (
         <p className="order-empty">No items yet. Tap a fruit to add it.</p>
       )}
@@ -102,7 +103,7 @@ const OrderSummary = ({ cartItems, onRemoveItem, onCheckout }) => {
       {/* // CHECKOUT BUTTON */}
       {cartItems.length > 0 && (
         <button className="checkout-button" onClick={() => onCheckout()}>
-          Checkout
+          Checkout ➜
         </button>
       )}
     </div>
