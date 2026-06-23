@@ -1,13 +1,13 @@
 Project Spec
+Build
+https://legendary-starlight-ae15d0.netlify.app/
+
 
 // project review
 1) Menu.jsx - loop through using Map and creating buttons from each fruit object in the MENU array
 2) Button onClick={() => onAddItem(fruit)}
 // When the card is clicked, we call onAddItem function > in App.jsx and pass the full fruit object: { id, name, price, image }.
 3) 
-
-
-
 
 
 //Claude error - 1. How the package.json file is supposed to be created
